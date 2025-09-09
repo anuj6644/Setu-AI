@@ -79,7 +79,7 @@ const HeroSection = () => {
         <div className="text-center">
           <div className="flex items-center justify-center mb-2">
           <TrendingUp className="h-6 w-6 text-status-healthy mr-2" />
-          <span className="text-2xl font-bold text-foreground">99.9%</span>
+          <span className="text-2xl font-bold text-foreground">75%-85%</span>
           </div>
           <p className="text-muted-foreground">Prediction Accuracy</p>
         </div>

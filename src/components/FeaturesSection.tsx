@@ -14,7 +14,7 @@ const FeaturesSection = () => {
     {
       icon: TrendingUp,
       title: "Predictive Failure Analytics",
-      description: "Advanced AI algorithms analyze historical and real-time data to predict potential failures 30-90 days in advance.",
+      description: "Advanced AI algorithms analyze historical and real-time data to predict potential failures 12 hours in advance.",
       benefits: ["Early warning system", "Failure prediction", "Maintenance optimization"],
       color: "status-healthy"
     },
@@ -144,7 +144,7 @@ const FeaturesSection = () => {
               </li>
               <li className="flex items-center">
                 <span className="w-2 h-2 bg-status-healthy rounded-full mr-3" />
-                99.9% uptime with redundant systems
+                90% uptime with redundant systems
               </li>
               <li className="flex items-center">
                 <span className="w-2 h-2 bg-status-healthy rounded-full mr-3" />

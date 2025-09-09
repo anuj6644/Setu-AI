@@ -89,7 +89,7 @@ const SolutionSection = () => {
               <Database className="h-10 w-10 text-primary mx-auto mb-3" />
               <h4 className="font-semibold text-foreground mb-2">Data Collection</h4>
               <p className="text-sm text-muted-foreground">
-                Continuous sensor data collection with 99.9% uptime and millisecond precision
+                Continuous sensor data collection with 90% uptime and millisecond precision
               </p>
             </div>
             <div className="text-center">
@@ -103,7 +103,7 @@ const SolutionSection = () => {
               <Brain className="h-10 w-10 text-status-healthy mx-auto mb-3" />
               <h4 className="font-semibold text-foreground mb-2">AI Prediction</h4>
               <p className="text-sm text-muted-foreground">
-                Advanced ML models predict failures 30-90 days in advance with high accuracy
+                Advanced ML models predict failures 12 hours in advance with high accuracy
               </p>
             </div>
           </div>
