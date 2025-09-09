@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate } from 'react-router-dom';
+import Graphs from "@/components/graphs";
+import MapDashboardPage from "@/pages/MapDashboardPage";
 import { 
   Activity, 
   AlertTriangle, 
@@ -125,56 +127,11 @@ const Dashboard = () => {
 
       {/* Main Dashboard */}
       <div className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
-          {/* Map Section */}
+        <div className="grid  lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <Card className="h-[500px]">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2 text-primary" />
-                  Live Infrastructure Map
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="h-full">
-                <div className="bg-secondary/20 rounded-lg h-full flex items-center justify-center relative overflow-hidden">
-                  {/* Real Map with Markers */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-primary/5">
-                    {latestReadings.map((reading, index) => {
-                      const positions = [
-                        { top: '25%', left: '33%' },
-                        { top: '50%', left: '50%' },
-                        { bottom: '33%', right: '33%' },
-                        { bottom: '25%', left: '25%' }
-                      ];
-                      const position = positions[index % positions.length];
-                      
-                      return (
-                        <div 
-                          key={reading.id}
-                          className={`absolute w-3 h-3 rounded-full cursor-pointer ${
-                            reading.status === 'critical' ? 'bg-status-critical animate-pulse-glow' :
-                            reading.status === 'warning' ? 'bg-status-warning animate-pulse' :
-                            'bg-status-healthy'
-                          }`}
-                          style={position}
-                          onClick={() => setSelectedStructure(reading)}
-                        >
-                          <div className="absolute -top-6 -left-8 text-xs bg-card px-2 py-1 rounded border text-foreground whitespace-nowrap">
-                            {reading.structure_name.split(' - ')[0]}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="text-center">
-                    <p className="text-muted-foreground mb-2">Interactive Infrastructure Map</p>
-                    <p className="text-sm text-muted-foreground">Click on markers to view details</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+           <MapDashboardPage />
           </div>
+          
 
           {/* Status Panel */}
           <div className="space-y-6">
@@ -245,161 +202,10 @@ const Dashboard = () => {
             </Card>
           </div>
         </div>
+        {/* Real-time Graphs */} <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6"> <Card> <CardHeader> <CardTitle className="text-lg flex items-center"> <TrendingUp className="h-5 w-5 mr-2 text-primary" /> Vibration Frequency </CardTitle> </CardHeader> <CardContent> <div className="h-40"> <ChartContainer config={{ vibration: { label: "Vibration (Hz)", color: "hsl(var(--status-critical))", }, }} > <ResponsiveContainer width="100%" height="100%"> <LineChart data={getChartData('STR001', 'vibration_frequency')}> <CartesianGrid strokeDasharray="3 3" className="opacity-30" /> <XAxis dataKey="time" fontSize={10} tick={{ fill: 'hsl(var(--muted-foreground))' }} /> <YAxis fontSize={10} tick={{ fill: 'hsl(var(--muted-foreground))' }} /> <ChartTooltip content={<ChartTooltipContent />} /> <Line type="monotone" dataKey="value" stroke="hsl(var(--status-critical))" strokeWidth={2} dot={{ fill: 'hsl(var(--status-critical))', strokeWidth: 2, r: 3 }} /> </LineChart> </ResponsiveContainer> </ChartContainer> </div> <div className="mt-4 text-center"> <div className="text-xl font-bold text-status-critical"> {latestReadings.find(r => r.structure_id === 'STR001')?.vibration_frequency || 'N/A'} Hz </div> <p className="text-xs text-muted-foreground">Current Reading</p> </div> </CardContent> </Card> <Card> <CardHeader> <CardTitle className="text-lg flex items-center"> <Droplets className="h-5 w-5 mr-2 text-blue-500" /> Humidity Levels </CardTitle> </CardHeader> <CardContent> <div className="h-40"> <ChartContainer config={{ humidity: { label: "Humidity (%)", color: "hsl(210, 100%, 50%)", }, }} > <ResponsiveContainer width="100%" height="100%"> <LineChart data={getChartData('STR001', 'humidity')}> <CartesianGrid strokeDasharray="3 3" className="opacity-30" /> <XAxis dataKey="time" fontSize={10} tick={{ fill: 'hsl(var(--muted-foreground))' }} /> <YAxis fontSize={10} tick={{ fill: 'hsl(var(--muted-foreground))' }} /> <ChartTooltip content={<ChartTooltipContent />} /> <Line type="monotone" dataKey="value" stroke="hsl(210, 100%, 50%)" strokeWidth={2} dot={{ fill: 'hsl(210, 100%, 50%)', strokeWidth: 2, r: 3 }} /> </LineChart> </ResponsiveContainer> </ChartContainer> </div> <div className="mt-4 text-center"> <div className="text-xl font-bold text-blue-500"> {latestReadings.find(r => r.structure_id === 'STR001')?.humidity || 'N/A'}% </div> <p className="text-xs text-muted-foreground">Current Humidity</p> </div> </CardContent> </Card> <Card> <CardHeader> <CardTitle className="text-lg flex items-center"> <Activity className="h-5 w-5 mr-2 text-status-warning" /> Strain Measurements </CardTitle> </CardHeader> <CardContent> <div className="h-40"> <ChartContainer config={{ strain: { label: "Strain (με)", color: "hsl(var(--status-warning))", }, }} > <ResponsiveContainer width="100%" height="100%"> <LineChart data={getChartData('STR001', 'strain_measurement')}> <CartesianGrid strokeDasharray="3 3" className="opacity-30" /> <XAxis dataKey="time" fontSize={10} tick={{ fill: 'hsl(var(--muted-foreground))' }} /> <YAxis fontSize={10} tick={{ fill: 'hsl(var(--muted-foreground))' }} /> <ChartTooltip content={<ChartTooltipContent />} /> <Line type="monotone" dataKey="value" stroke="hsl(var(--status-warning))" strokeWidth={2} dot={{ fill: 'hsl(var(--status-warning))', strokeWidth: 2, r: 3 }} /> </LineChart> </ResponsiveContainer> </ChartContainer> </div> <div className="mt-4 text-center"> <div className="text-xl font-bold text-status-warning"> {latestReadings.find(r => r.structure_id === 'STR001')?.strain_measurement || 'N/A'} με </div> <p className="text-xs text-muted-foreground">Micro-strain</p> </div> </CardContent> </Card> </div>
 
-        {/* Real-time Graphs */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <TrendingUp className="h-5 w-5 mr-2 text-primary" />
-                Vibration Frequency
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-40">
-                <ChartContainer
-                  config={{
-                    vibration: {
-                      label: "Vibration (Hz)",
-                      color: "hsl(var(--status-critical))",
-                    },
-                  }}
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={getChartData('STR001', 'vibration_frequency')}>
-                      <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                      <XAxis 
-                        dataKey="time" 
-                        fontSize={10}
-                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      />
-                      <YAxis 
-                        fontSize={10}
-                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <Line 
-                        type="monotone" 
-                        dataKey="value" 
-                        stroke="hsl(var(--status-critical))" 
-                        strokeWidth={2}
-                        dot={{ fill: 'hsl(var(--status-critical))', strokeWidth: 2, r: 3 }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </div>
-              <div className="mt-4 text-center">
-                <div className="text-xl font-bold text-status-critical">
-                  {latestReadings.find(r => r.structure_id === 'STR001')?.vibration_frequency || 'N/A'} Hz
-                </div>
-                <p className="text-xs text-muted-foreground">Current Reading</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <Droplets className="h-5 w-5 mr-2 text-blue-500" />
-                Humidity Levels
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-40">
-                <ChartContainer
-                  config={{
-                    humidity: {
-                      label: "Humidity (%)",
-                      color: "hsl(210, 100%, 50%)",
-                    },
-                  }}
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={getChartData('STR001', 'humidity')}>
-                      <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                      <XAxis 
-                        dataKey="time" 
-                        fontSize={10}
-                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      />
-                      <YAxis 
-                        fontSize={10}
-                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <Line 
-                        type="monotone" 
-                        dataKey="value" 
-                        stroke="hsl(210, 100%, 50%)" 
-                        strokeWidth={2}
-                        dot={{ fill: 'hsl(210, 100%, 50%)', strokeWidth: 2, r: 3 }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </div>
-              <div className="mt-4 text-center">
-                <div className="text-xl font-bold text-blue-500">
-                  {latestReadings.find(r => r.structure_id === 'STR001')?.humidity || 'N/A'}%
-                </div>
-                <p className="text-xs text-muted-foreground">Current Humidity</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center">
-                <Activity className="h-5 w-5 mr-2 text-status-warning" />
-                Strain Measurements
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-40">
-                <ChartContainer
-                  config={{
-                    strain: {
-                      label: "Strain (με)",
-                      color: "hsl(var(--status-warning))",
-                    },
-                  }}
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={getChartData('STR001', 'strain_measurement')}>
-                      <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                      <XAxis 
-                        dataKey="time" 
-                        fontSize={10}
-                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      />
-                      <YAxis 
-                        fontSize={10}
-                        tick={{ fill: 'hsl(var(--muted-foreground))' }}
-                      />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <Line 
-                        type="monotone" 
-                        dataKey="value" 
-                        stroke="hsl(var(--status-warning))" 
-                        strokeWidth={2}
-                        dot={{ fill: 'hsl(var(--status-warning))', strokeWidth: 2, r: 3 }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </div>
-              <div className="mt-4 text-center">
-                <div className="text-xl font-bold text-status-warning">
-                  {latestReadings.find(r => r.structure_id === 'STR001')?.strain_measurement || 'N/A'} με
-                </div>
-                <p className="text-xs text-muted-foreground">Micro-strain</p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
-      </div>
-    </div>
+        </div>
   );
 };
 

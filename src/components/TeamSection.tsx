@@ -13,7 +13,7 @@ const TeamSection = () => {
     },
     {
       name: "Kunwar Singh",
-      role: "Head of IoT Systems and CAD Design",
+      role: "IoT Systems and CAD Design",
       expertise: "IoT Architecture,Electronics and CAD Designing",
       bio: "Expert in designing large-scale IoT deployments for critical infrastructure monitoring.",
       image: "/kunwar.jpg"
@@ -27,21 +27,21 @@ const TeamSection = () => {
     },
     {
       name: "Rakhi Garhwal",
-      role: " AI/ML Specialist",
+      role: "Data Engineer and Analyst",
       expertise: "Policy, Disaster Management",
       bio: "Engineering student working on innovative solutions in AI and Machine Learning, with a focus on Data Analysis.",
       image: "/rakhi.jpg"
     },
     {
       name: "Kartik",
-      role: "Security Lead",
+      role: "Security Framework Developer",
       expertise: "Sensor Design, Embedded Systems",
       bio: "Passionate about building secure and reliable IoT solutions by integrating encryption, authentication, and threat mitigation into every layer of the system.",
       image: "/kartik.jpg"
     },
     {
       name: "Jyoti Gupta",
-      role: "VLSI enthusiast",
+      role: "Team Lead",
       expertise: "Product Strategy, User Experience",
       bio: "Focused on creating user-centric designs that enhance the overall experience and usability of technology products.",
       image: "/jyoti.jpg"
