@@ -26,25 +26,25 @@ const TeamSection = () => {
       image: "/kushagra.jpg"
     },
     {
-      name: "Dr. Meera Nair",
-      role: "Director of Government Relations",
+      name: "Rakhi Garhwal",
+      role: " AI/ML Specialist",
       expertise: "Policy, Disaster Management",
-      bio: "Former NDMA official with deep expertise in disaster management protocols and government systems.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face"
+      bio: "Engineering student working on innovative solutions in AI and Machine Learning, with a focus on Data Analysis.",
+      image: "/rakhi.jpg"
     },
     {
-      name: "Vikash Singh",
-      role: "Hardware Engineering Lead",
+      name: "Kartik",
+      role: "Security Lead",
       expertise: "Sensor Design, Embedded Systems",
-      bio: "Designs ruggedized sensor systems capable of operating in harsh environmental conditions.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face"
+      bio: "Passionate about building secure and reliable IoT solutions by integrating encryption, authentication, and threat mitigation into every layer of the system.",
+      image: "/kartik.jpg"
     },
     {
-      name: "Anita Reddy",
-      role: "Product Manager",
+      name: "Jyoti Gupta",
+      role: "VLSI enthusiast",
       expertise: "Product Strategy, User Experience",
-      bio: "Leads product development with focus on user-centric design and government stakeholder needs.",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face"
+      bio: "Focused on creating user-centric designs that enhance the overall experience and usability of technology products.",
+      image: "/jyoti.jpg"
     }
   ];
 
