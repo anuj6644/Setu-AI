@@ -58,9 +58,7 @@ const Navigation = () => {
               </NavLink>
   )
             ))}
-            <Button variant="default" size="sm" className="ml-4" onClick={() => window.location.href = '/auth'}>
-              Get Started
-            </Button>
+            
           </div>
 
           {/* Mobile menu button */}
