@@ -9,6 +9,9 @@ import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import MapDashboardPage from "./pages/MapDashboardPage";
+import SimpleSimulation from "@/components/SimpleSimulation";
+import CADSimulation from "@/components/CADSimulation";
+import ArduinoSimulation from "@/components/ArduinoSimulation";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/map" element={<MapDashboardPage />} />
+            <Route path="/arduino" element={<ArduinoSimulation/>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
