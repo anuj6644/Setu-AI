@@ -184,9 +184,9 @@ function startSimulation() {
       timestamp: Date.now(),
       status: status,
       sensors: {
-        strain: Math.round(strain * 10) / 10,
-        vibration: Math.round(vibration * 10) / 10,
-        temperature: Math.round(temperature * 10) / 10,
+        strain: Math.round(strain * 6) / 10,
+        vibration: Math.round(vibration * 1000) / 10,
+        temperature: Math.round(temperature * 20) / 10,
         accelerometer: {
           x: (Math.random() - 0.5) * 2,
           y: (Math.random() - 0.5) * 2,

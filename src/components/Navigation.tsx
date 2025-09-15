@@ -10,7 +10,7 @@ const Navigation = () => {
     { name: "Home", href: "/" },
     { name: "Dashboard", href: "/dashboard" },
     { name: "Map Monitor", href: "/map" },
-    { name: "Arduino Live", href: "/arduino" },
+    { name: "Simulation", href: "/arduino" },
     { name: "Features", href: "#features" },
     { name: "Team", href: "#team" },
     { name: "Contact", href: "#contact" },

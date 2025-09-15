@@ -261,13 +261,13 @@ function LoadingSpinner() {
 const ArduinoSimulation: React.FC = () => {
   const [sensorData, setSensorData] = useState<ArduinoSensorData>({
     infrastructure_id: "BRIDGE_001",
-    location: "Connecting to Arduino...",
+    location: "Connecting to Node...",
     timestamp: Date.now(),
     status: "normal",
     sensors: {
-      strain: 800,
-      vibration: 1,
-      temperature: 25,
+      strain: 236,
+      vibration: 122,
+      temperature: 32,
       accelerometer: { x: 0, y: 0, z: 0 }
     },
     system: {
@@ -463,7 +463,7 @@ const ArduinoSimulation: React.FC = () => {
         fontSize: "12px",
         zIndex: 1000
       }}>
-        🔗 Arduino: {connectionStatus === 'connected' ? 'Connected' :
+        🔗 IOT Node: {connectionStatus === 'connected' ? 'Connected' :
                    connectionStatus === 'connecting' ? 'Connecting...' : 'Disconnected'}
       </div>
 
@@ -580,7 +580,7 @@ const ArduinoSimulation: React.FC = () => {
           minWidth: "320px"
         }}>
           <h3 style={{ margin: "0 0 15px 0", fontSize: "16px", color: "#4CAF50" }}>
-            🤖 Real Arduino Sensor Data
+            🤖 Predictive Real Time Sensor Data
           </h3>
           <div style={{ fontSize: "12px", color: "#888", marginBottom: "10px" }}>
             {sensorData.location} • ID: {sensorData.infrastructure_id}
@@ -615,8 +615,8 @@ const ArduinoSimulation: React.FC = () => {
           {/* System Info */}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "10px", fontSize: "11px", color: "#888" }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <span>Uptime: {Math.floor(sensorData.system.uptime / 60)}m</span>
-              <span>Memory: {sensorData.system.free_memory}B</span>
+              {/* <span>Uptime: {Math.floor(sensorData.system.uptime / 60)}m</span>
+              <span>Memory: {sensorData.system.free_memory}B</span> */}
               <span>Battery: {sensorData.system.battery_level}%</span>
             </div>
             <div style={{ marginTop: "5px" }}>
@@ -675,10 +675,10 @@ const ArduinoSimulation: React.FC = () => {
           zIndex: 100
         }}>
           <h1 style={{ margin: 0, fontSize: "24px", fontWeight: "300", letterSpacing: "1px" }}>
-            🤖 3D Model Simulation
+            🤖 BIM Simulation
           </h1>
           <p style={{ margin: "5px 0 0 0", fontSize: "14px", color: "#aaa" }}>
-            Real-time data from Arduino sensors
+            Real-time data from integrated sensors
           </p>
         </div>
       </div>
